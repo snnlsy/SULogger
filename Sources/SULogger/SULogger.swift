@@ -69,7 +69,7 @@ public protocol SULoggerProtocol {
 public class SULogger: SULoggerProtocol {
     public static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter
     }()
     
@@ -102,14 +102,10 @@ public class SULogger: SULoggerProtocol {
         let timestamp = dateFormatter.string(from: Date())
         let fileName = URL(fileURLWithPath: fileName).lastPathComponent
         
-        let logMetaData = "\(level.icon) [\(level.prefix)] [\(timestamp)] [\(fileName):\(line) \(funcName)]"
+        let logMetaData = "\(level.icon) [\(level.prefix)] [\(timestamp)] [\(fileName):\(line)]"
         let logMessage = "\(logMetaData) \(message)"
-        let line = String(repeating: "=", count: logMetaData.count+1)
 
-        print(line)
         print(logMessage)
-        print(line)
-        print("\n")
     }
 }
 
